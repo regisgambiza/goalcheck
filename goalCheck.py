@@ -1,5 +1,6 @@
 # This script is used to carry out goal check
 import time
+from os import system, name
 
 
 # Functions
@@ -7,6 +8,17 @@ def checker(d_code, description):
     response = input(description)
     if response == 'n':
         code_list.append(d_code)
+
+
+# define our clear function
+def clear():
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+
+        # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = system('clear')
 
 
 # Dictionaries of all codes and descriptions
@@ -61,7 +73,7 @@ code_list = []
 print('\n')
 print('***** Welcome to GOAL CHECK *****')
 print('***** Created by Baddaz Tech *****')
-time.sleep(3)
+time.sleep(1)
 print('\n')
 
 # Start the actual goal check
@@ -100,7 +112,12 @@ for n in range(1, pace_num + 1):
         checker(x, y)
     print('\n')
 
+
 # Print out all the error codes
-print('***** These are the the codes for this learner ****')
-for x in range(len(code_list)):
-    print(code_list[x])
+if not code_list:
+    print("This learner has no demerits!")
+else:
+    clear()
+    print('***** These are the the codes for this learner ****')
+    for x in range(len(code_list)):
+        print(code_list[x])
